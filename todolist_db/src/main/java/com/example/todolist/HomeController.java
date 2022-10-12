@@ -1,7 +1,10 @@
 package com.example.todolist;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
+
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +19,11 @@ public class HomeController {
     private List<TaskItem> taskitems=new ArrayList<>();
     private TaskListDao dao;
 
+    @Autowired
+    HomeController(TaskListDao dao){
+        this.dao=dao;
+    }
+
     @Autowired//ここと下のコンストラクタが無いとうまく機能しない
     HomeController(TaskListDao dao){
         this.dao=dao;
@@ -23,14 +31,21 @@ public class HomeController {
     @GetMapping(value="/list")//urlで/listが呼ばれたとき
     String listItems(Model model){
         taskitems=dao.findAll();
-        model.addAttribute("taskList",taskitems);//htmlに渡すのはTaskItemクラスのオブジェクト
+        model.addAttribute("taskList",taskitems);//TaskItemのリストを渡している→TaskListDaoでTaskItemのオブジェクトを作成すればOK
+
         return "home";
     }
+
     @GetMapping("/add")
     String addItem(@RequestParam("task") String task,@RequestParam("deadline") String deadline){
         String id=UUID.randomUUID().toString().substring(0,8);
         TaskItem item=new TaskItem(id,task,deadline,false);
-        taskitems.add(item);
+        //編集
+        //taskitems.add(item);
+        //追加
+
+        dao.add(item);
+
         return "redirect:/list";
     }
     @GetMapping("/delete")

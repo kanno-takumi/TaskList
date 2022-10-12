@@ -26,6 +26,7 @@ public class TaskListDao {
         SimpleJdbcInsert insert=new SimpleJdbcInsert(jdbcTemplate).withTableName("tasklist");//データベースに保存するためのインスタンスを生成
         insert.execute(param);//Insertを行う
     }
+
     //データベースから取り出すメソッド
     public List<TaskItem> findAll(){
         List<TaskItem> taskItemList=new ArrayList<>();
@@ -38,6 +39,7 @@ public class TaskListDao {
 
 
         return taskItemList;
+
     }
 }
 
