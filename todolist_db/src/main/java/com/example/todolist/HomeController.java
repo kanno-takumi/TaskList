@@ -2,6 +2,7 @@ package com.example.todolist;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
@@ -23,9 +24,15 @@ public class HomeController {
         this.dao=dao;
     }
 
+    @Autowired//ここと下のコンストラクタが無いとうまく機能しない
+    HomeController(TaskListDao dao){
+        this.dao=dao;
+    }
     @GetMapping(value="/list")//urlで/listが呼ばれたとき
     String listItems(Model model){
-      //  model.addAttribute("taskList",taskitems);//TaskItemのリストを渡している→TaskListDaoでTaskItemのオブジェクトを作成すればOK
+        taskitems=dao.findAll();
+        model.addAttribute("taskList",taskitems);//TaskItemのリストを渡している→TaskListDaoでTaskItemのオブジェクトを作成すればOK
+
         return "home";
     }
 

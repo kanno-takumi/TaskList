@@ -26,17 +26,20 @@ public class TaskListDao {
         SimpleJdbcInsert insert=new SimpleJdbcInsert(jdbcTemplate).withTableName("tasklist");//データベースに保存するためのインスタンスを生成
         insert.execute(param);//Insertを行う
     }
-//データベースから取り出すメソッド
-    public List<TaskItem> findAll(){
-        String query="SELECT*FROM tasklist";//sql文（tasklistテーブルから検索する）・queryはSQL文
-        List<Map<String,Object>> result=jdbcTemplate.queryForList(query);//queryForListメソッド（SQLを読み取り、List<Map<string,Object>>型として格納する
-        //戻り値となるListは<Map<列名（キー）,中身>>となる
 
-        //Listメソッドの戻り値から要素を1つずつ取り出し、TaskItemオブジェクトを作成する。
-       List<TaskItem> taskItems=result.stream().map((Map<String,Object> row)->new TaskItem(
-                        row.get("id").toString(), row.get("task").toString(), row.get("deadline").toString(), (Boolean)row.get("done")
-                )).toList();
-        return taskItems;
+    //データベースから取り出すメソッド
+    public List<TaskItem> findAll(){
+        List<TaskItem> taskItemList=new ArrayList<>();
+        String query="SELECT*FROM tasklist";//「tasklistテーブルから取り出す」というSQL文→query
+        List<Map<String,Object>> result=jdbcTemplate.queryForList(query);//SQLを読み取りList<Map<string,Object>>型として格納する。//戻り値となるListは<Map<列名（キー）,中身>>となる
+        for(Map map:result){
+            TaskItem taskItem=new TaskItem(map.get("id").toString(),map.get("task").toString(),map.get("deadline").toString(),(Boolean)map.get("done"));
+            taskItemList.add(taskItem);
+        }
+
+
+        return taskItemList;
+
     }
 }
 
