@@ -1,5 +1,6 @@
 package com.example.todolist;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,10 +14,16 @@ import java.util.UUID;
 @Controller
 public class HomeController {
     private List<TaskItem> taskitems=new ArrayList<>();
+    private TaskListDao dao;
 
+    @Autowired//ここと下のコンストラクタが無いとうまく機能しない
+    HomeController(TaskListDao dao){
+        this.dao=dao;
+    }
     @GetMapping(value="/list")//urlで/listが呼ばれたとき
     String listItems(Model model){
-        model.addAttribute("taskList",taskitems);
+        taskitems=dao.findAll();
+        model.addAttribute("taskList",taskitems);//htmlに渡すのはTaskItemクラスのオブジェクト
         return "home";
     }
     @GetMapping("/add")
