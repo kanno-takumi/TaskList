@@ -19,11 +19,6 @@ public class HomeController {
     private List<TaskItem> taskitems=new ArrayList<>();
     private TaskListDao dao;
 
-    @Autowired
-    HomeController(TaskListDao dao){
-        this.dao=dao;
-    }
-
     @Autowired//ここと下のコンストラクタが無いとうまく機能しない
     HomeController(TaskListDao dao){
         this.dao=dao;
