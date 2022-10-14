@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thmeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>学歴表示</title>
+</head>
+<body>
+<h1>学歴表示</h1>
+あなたは<span th:text="${age}"></span>歳です
+
+<!--<div th:each="all_year:${year}"></div>-->
+<!--    <p th:text="${all_year}"></p>-->
+<!--</div>-->
+<div th:each="all_year:${year}">
+    <div th:each="one_year:${all_year}">
+    <p th:text="${one_year}"></p>
+    </div>
+</div>
+
+<!--listの作り方(sample)-->
+<!--<div th:each="val : ${ { 'apple','banana','orange' } }">-->
+<!--    <p th:text="${val}"></p>-->
+<!--</div>-->
+</body>
+</html>

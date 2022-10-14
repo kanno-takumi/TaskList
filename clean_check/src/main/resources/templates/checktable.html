@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thmeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>清掃チェック表</title>
+</head>
+<body>
+<h1>清掃チェック表</h1>
+<table border="1">
+
+    <thead>
+    <th>項目</th><td>9/23</td>
+    <td>9/24</td><td>9/25</td>
+    <td>9/26</td><td>9/27</td>
+    <td>9/28</td><td>9/29</td>
+    </thead>
+
+    <tbody>
+    <tr th:each="item:${itemList}">
+        <td th:text="${item.}"></td>
+
+    </tr>
+    </tbody>
+
+</table>
+
+</body>
+</html>

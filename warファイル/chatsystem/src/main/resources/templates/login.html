@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>login</title>
+</head>
+
+<body>
+<h1>ログイン</h1>
+<form method="Post" action="confirm">
+    <div>
+        <label for="name">ユーザ名　</label>
+        <input id="name" type="text" name="name"><br>
+        <label for="pass">パスワード</label>
+        <input id="pass" type="password" name="pass" >
+        <input type="submit" value="ログイン"/>
+    </div>
+</form>
+
+<form method="Post" action="signup">
+    <div>
+        <br><br><br>
+        <input type="submit" value="新規登録はこちら">
+    </div>
+</form>
+
+<!-- loginできなかった時に表示したい  -->
+<p th:text="${failuremessage}"></p>
+<!--<p th:text="${failuremessage2}"></p>-->
+<p th:text="${failuremessage3}"></p>
+
+
+</body>
+</html>

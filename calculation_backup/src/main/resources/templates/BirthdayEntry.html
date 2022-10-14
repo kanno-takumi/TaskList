@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thmeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>誕生日入力画面</title>
+</head>
+<body>
+<h1>学歴計算</h1>
+<div class="educational_background_form">
+    <h2>生年月日の入力</h2>
+
+    <form action="/display">
+        <label>誕生年</label>
+        <input name="birthday_year" type="number" min="1980" max="2020"/><br>
+        <label>誕生月</label>
+        <input name="birthday_month" type="number" min="1" max="12"/><br>
+        <input type="submit" value="登録" />
+    </form>
+</div>
+<!--接続確認<br>-->
+<!--「名前」attributeValueをHomeControllerから受け取る-->
+<!--<span th:text="${attributeValue}"> </span>-->
+
+<!--入力フォーム-->
+
+
+</body>
+</html>

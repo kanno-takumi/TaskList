@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>自作タスク管理アプリケーション（DBなし）</title>
+</head>
+<body>
+<h1>自作タスク管理アプリケーション(DB無し）</h1>
+<div class="task_form"> <!--CSSを書くときにclassは利用する-->
+    <h2>タスクの登録</h2>
+    <form action="/add">
+        <label>タスク</label>
+        <input name="task" type="text"/>
+        <label>期限</label>
+        <input name="deadline" type="date"/>
+        <input type="submit" value="登録" />
+    </form>
+</div>
+
+<div class="tasklist">
+    <h2>現在のタスク一覧</h2>
+    <!--テーブルの部分-->
+    <table border="1" style="border-collapse:collapse;">
+    <thead>
+    <tr><th class="hidden">ID</th><th>タスク</th><th>期限</th></tr>
+    </thead>
+
+        <tbody>
+        <!--trタグで1行-->
+        <!--tdタグは普通の-->
+        <!--thタグはheaderだから太くなる-->
+        <!--th:eachタグはThymeleafとともに用いる。繰り返し文を作る-->
+        <!--th:textはThymeleafで値を表示するのに使う-->
+        <!--thはタグじゃない!!!!!!!-->
+        <tr th:each="task:${taskList}"><!--taskListの全ての要素を繰り返し表示させたい-->
+
+        <td th:text="${task.id}"></td>
+        <td th:text="${task.task}"></td>
+        <td width="100px" th:text="${task.deadline}"></td>
+        </tr>
+        </tbody>
+
+    </table>
+</div>
+</body>
+</html>

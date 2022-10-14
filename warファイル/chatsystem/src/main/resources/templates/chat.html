@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF8">
+    <title>chat</title>
+</head>
+<body>
+<h1>チャットシステム</h1>
+<!--pタグで囲むと段落が変わる    Hrで横棒-->
+<p th:text="${name}"></p>
+<p th:text="${pass}"></p>
+<hr>
+<form action="add"><!--/addに飛ぶ -->
+   <!-- <label>名前</label>
+    <input name="name" type="text" />
+    <label>チャット</label>
+    -->
+    <input name="chat" type="text" />
+    <input type="submit" value="送信" />
+</form>
+<table>
+    <tbody>
+
+    <!--この部分が名前とチャットを表示させてくれる部分-->
+    <tr th:each="chat : ${chats}">
+        <td th:text="${chat}"></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
