@@ -36,11 +36,13 @@ public class TaskListDao {
             TaskItem taskItem=new TaskItem(map.get("id").toString(),map.get("task").toString(),map.get("deadline").toString(),(Boolean)map.get("done"));
             taskItemList.add(taskItem);
         }
-
-
         return taskItemList;
-
     }
+    public void delete(String id){
+        String query="DELETE FROM tasklist WHERE id=?";
+        jdbcTemplate.update(query,id);
+    }
+
 }
 
 
