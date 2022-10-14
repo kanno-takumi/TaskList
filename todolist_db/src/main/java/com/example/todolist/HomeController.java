@@ -45,16 +45,6 @@ public class HomeController {
     }
     @GetMapping("/delete")
     String deleteItem(@RequestParam("id") String id){
-//        int listSize=taskitems.size();
-//        TaskItem item=new TaskItem("sample","sample","sample",false);
-//        for(int i=0;i<listSize;i++){
-////            System.out.println(taskitems.get(i).getId());
-////            System.out.println(id);
-//            if(taskitems.get(i).getId().equals(id)){//taskitems(list)の全てのクラスからidの検索をかける
-//                taskitems.remove(i);
-//                break;
-//            }
-//        }
         dao.delete(id);
     return "redirect:/list";
     }
